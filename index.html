@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>「TRIANGLE」 Website</title>
+  <style>
+    /* 全局样式 */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      color: #6633ff; /* 浅紫色 */
+      background-color: black; /* 黑色背景 */
+      text-align: center;
+         transition: background-color 0.5s ease; /* 添加背景颜色过渡效果 */
+         scroll-behavior: smooth;
+    }
+
+    /* 导航栏 */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: rgba(66, 51, 255, 0) 0px 1px; /* 浅紫色边框 */
+    }
+
+    .navbar a {
+      color: #6633ff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border: 2px solid #6633ff;
+      border-radius: 5px;
+    }
+
+
+.index2-logo {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    margin-left: -720px;
+    margin-top: 30px;
+    transition: transform 2.2s ease; /* 平滑过渡效果 */
+    display: inline-block; /* 确保可见 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针 */
+}
+.index2-logo:hover {
+    transform: rotate(360deg); /* 鼠标悬浮时旋转 360 度 */
+}
+    
+/* 侧边栏导航样式 */
+.sidebar-nav {
+    position: fixed;
+    top: 50%;
+    right: -250px; /* 初始隐藏在屏幕外 */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.98);
+    border-radius: 10px 0 0 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    width: 180px;
+    z-index: 1000;
+    transition: right 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    border: 1px solid #eaeaea;
+    border-right: none;
+}
+
+.sidebar-nav.active {
+    right: 0; /* 显示时滑入 */
+}
+
+.sidebar-nav h3 {
+    color: #c9b5b5;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 8px;
+}
+
+.sidebar-nav a {
+    color: #c9b5b5;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.sidebar-nav a:hover {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+/* 触发按钮样式 */
+.nav-trigger {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 50px;
+    background-color: #6633ff;
+    border-radius: 5px 0 0 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    border: 1px solid #eaeaea;
+    border-right: none;
+    transition: background-color 0.2s ease;
+}
+
+.nav-trigger:hover {
+    background-color: #513de7;
+}
+
+.nav-trigger::before {
+    content: "≡";
+    font-size: 18px;
+    color: #a09f9f;
+}
+
+/* 遮罩层样式 */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .sidebar-nav {
+        width: 160px;
+    }
+}
+    /* 标题 */
+    .title {
+      margin-top: 20px;
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    /* 主内容区域 */
+    .content {
+      position: relative;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .content h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .content p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    /* 下方箭头 */
+    .arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .arrow a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #6633ff;
+      text-decoration: none;
+      font-size: 18px;
+     
+    }
+
+    .arrow span {
+      font-size: 50px;
+      color: #6633ff;
+    }
+
+    .content5 {
+      position: relative;
+      text-align: center;
+      padding: 50px 20px;
+      margin-top: 100px; /* 增加顶部间距 */
+    }
+  /* 底部卡片 */
+  .card-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 200px;
+        }
+        .card {
+            flex: 1;
+            max-width: 25%;
+            border: 2px solid #6633ff;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+             text-decoration: none; /* 取消链接的下划线 */
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card .arrow {
+            color: #6633ff;
+            font-size: 24px;
+            margin-bottom: 10px;
+            
+        }
+        .card .title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #6633ff;
+
+        }
+        .card .desc {
+            font-size: 14px;
+            color: #6633ff;
+
+        }
+        #explore-btn {
+            width: 10px;
+            height: 10px;
+            background-color: #000000; 
+            color: rgb(99, 85, 207);
+            text-align: center;
+            line-height: 80px; /* 使文本垂直居中 */
+            font-size: 24px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+            }
+            50% {
+                transform: translatey(-20px);
+            }
+            100% {
+                transform: translatey(0px);
+            }
+        }
+
+
+
+
+       /* 主内容_1 */
+        .content1 {
+            width: 80%;
+            height: 700px;
+            background-color: #acd0ff;
+           
+            border-radius: 0px; /* 初始圆滑度 */
+            padding: 48px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 300px;
+            transition: border-radius 0.5s, box-shadow 0.3s 0.3s;
+
+           
+        }
+       
+
+        .content1 h1 {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #111;
+        }
+
+        .content1 .ai-icons {
+            display: flex;
+            align-items: center;
+            margin-top: -16px;
+        }
+
+        .content1 .ai-icons div {
+            width: 64px;
+            height: 64px;
+        }
+
+        .orange-arrow {
+            background: linear-gradient(135deg, #ff4500, #ff5c33);
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        .blue-square {
+            background-color: #3d3dc4;
+        }
+
+        .content1 p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 32px;
+            color: #333;
+        }
+
+        .small-text {
+            font-size: 14px;
+            color: #888;
+        }
+
+           /* 主内容_2 */
+           .content2 {
+            width: 80%;
+            height: 700px;
+            background-color: #ffe2e2;
+           
+            border-radius: 0px; /* 初始圆滑度 */
+            padding: 48px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 150px;
+            transition: border-radius 0.5s, box-shadow 0.3s 0.3s;
+            margin-left: auto;
+        }
+        
+        .content2 h1 {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #111;
+        }
+
+        .content2 .ai-icons {
+            display: flex;
+            align-items: center;
+            margin-top: -16px;
+        }
+
+        .content2 .ai-icons div {
+            width: 64px;
+            height: 64px;
+        }
+
+        .orange-arrow {
+            background: linear-gradient(135deg, #ff4500, #ff5c33);
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        .blue-square {
+            background-color: #3d3dc4;
+        }
+
+        .content2 p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 32px;
+            color: #333;
+        }
+
+        .small-text {
+            font-size: 14px;
+            color: #888;
+        }
+
+           /* 主内容_3 */
+           .content3 {
+            width: 80%;
+            height: 700px;
+            background-color: #c9c8c8;
+           
+            border-radius: 0px; /* 初始圆滑度 */
+            padding: 48px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 150px;
+            transition: border-radius 0.5s, box-shadow 0.3s 0.3s;
+
+        }
+
+        .content3 h1 {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #111;
+        }
+
+        .content3 .ai-icons {
+            display: flex;
+            align-items: center;
+            margin-top: -16px;
+        }
+
+        .content3 .ai-icons div {
+            width: 64px;
+            height: 64px;
+        }
+
+        .orange-arrow {
+            background: linear-gradient(135deg, #ff4500, #ff5c33);
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+
+        .blue-square {
+            background-color: #3d3dc4;
+        }
+
+        .content3 p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 32px;
+            color: #333;
+        }
+
+        .small-text {
+            font-size: 14px;
+            color: #888;
+        }
+
+
+        /* 浮动卡牌 */
+        .hand-cards {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 100px;
+        perspective: 1000px;
+        position: relative;
+        margin-top: 100px;
+        }
+
+        .card2 {
+        width: 200px;
+        height: 270px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+        position: absolute;
+        transform-origin: bottom center;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        cursor: pointer;
+        }
+
+        /* 三张卡牌的初始位置和角度 */
+        .card2:nth-child(1) {
+        transform: translateX(-80px) rotate(-15deg);
+        z-index: 1;
+        }
+        .card2:nth-child(2) {
+        transform: translateX(0) translateY(-20px) rotate(0deg);
+        z-index: 2;
+        }
+        .card2:nth-child(3) {
+        transform: translateX(80px) rotate(15deg);
+        z-index: 1;
+        }
+
+        /* 悬停效果 */
+        .card2:hover {
+        transform: translateY(-40px) !important;
+        z-index: 10 !important;
+        box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+        }
+
+        .card2-image {
+        height: 100%;
+        overflow: hidden;
+        }
+
+        .card2-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        }
+
+        .card2:hover .card-image img {
+        transform: scale(1.05);
+        }
+
+/* footer */
+     footer {
+    background-color: #000;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-section ul li i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ddd;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.copyright {
+    text-align: center;
+    padding: 30px 0;
+    background-color: #000000;
+}
+
+.copyright p {
+    font-size: 14px;
+}
+
+.copyright a {
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.copyright a:hover {
+    color: #ddd;
+}
+
+
+  </style>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+
+  <a href="intro-wang.html" ><img class="index2-logo" src="../image/logo.png" alt="logo"></a> 
+
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <h1 class="title">「TRIANGLE」</h1>
+    <a href="about us.html">About us</a>
+  </div>
+  <!-- <header>
+    <h1>网站头部</h1>
+</header> -->
+  <video autoplay muted loop id="video-background">
+    <source src="../video/video4.mp4" type="video/mp4">
+  </video>
+
+
+
+  <!-- 主内容区域 -->
+  <div class="content">
+    
+    <h2>Welcome to browse our Portfolio!</h2>
+    <p>The purpose of this website is to display students' completed works.</p>
+    <p>The works are mainly presented through pictures, while the projects are explained through text</p>
+     <!-- Explore 按钮 -->
+     <div class="arrow">
+      <a href="#" id="explore-btn"> <!-- 给按钮添加 id -->
+          <span>&#8595;</span>
+          Explore
+      </a>
+  </div>
+</div>
+  </div>
+ <!-- 内容1 -->
+  <div class="content1">
+ <a href="workwang.html">
+    <div class="hand-cards">
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWang/04.png" alt="卡牌图片1">
+          </div>
+        
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWang/06.png" alt="卡牌图片2">
+          </div>
+      
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWang/07.png" alt="卡牌图片3">
+          </div>
+         
+        </div>
+      </div>
+ </a>
+    <h1>The works of Wang Yutong</h1>
+    <div class="ai-icons">
+        <div class="orange-arrow"></div>
+        <div class="blue-square"></div>
+        <span style="font-size: 64px; font-weight: bold;">Web design</span>
+    </div>
+    <p class="small-text">Why is web design important?</p>
+    <p>Pay attention to the logic of user interaction and enhance the user retention rate through reasonable navigation, color matching and animation effects.</p>
+  
+
+</div>
+
+ <!-- 内容2 -->
+
+<div class="content2">
+ <a href="workwan.html">
+
+    <div class="hand-cards">
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWan/03.png" alt="卡牌图片1">
+          </div>
+        
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWan/04.png" alt="卡牌图片2">
+          </div>
+      
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWan/05.png" alt="卡牌图片3">
+          </div>
+         
+        </div>
+      </div>
+    
+ </a>
+    <h1>The works of Wan Feihan</h1>
+    <div class="ai-icons">
+        <div class="orange-arrow"></div>
+        <div class="blue-square"></div>
+        <span style="font-size: 64px; font-weight: bold;">Game production</span>
+    </div>
+    <p class="small-text">Be familiar with players' preferences, such as the popular Roguelike and Chinese-style themes in recent years</p>
+    <p>Project management skills, drawing skills, and the ability to coordinate multiple teams such as planners, artists, and programmers to ensure the efficient advancement of the game development process</p>
+
+
+
+</div>
+ <!-- 内容3 -->
+
+<div class="content3">
+ <a href="workwu.html">
+    
+    <div class="hand-cards">
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWu/14.png" alt="卡牌图片1">
+          </div>
+        
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWu/01.png" alt="卡牌图片2">
+          </div>
+      
+        </div>
+        
+        <div class="card2">
+          <div class="card2-image">
+            <img src="photoWu/12.png" alt="卡牌图片3">
+          </div>
+         
+        </div>
+      </div>
+ </a>
+    <h1>The works of Wu Jiajun</h1>
+    <div class="ai-icons">
+        <div class="orange-arrow"></div>
+        <div class="blue-square"></div>
+        <span style="font-size: 64px; font-weight: bold;">Surface modeling</span>
+    </div>
+    <p class="small-text">Be familiar with hard surface modeling and basic modeling.</p>
+    <p>From modeling, UV splitting to material rendering, I am also familiar with bone binding and animation.</p>
+
+
+  
+
+</div>
+
+
+
+
+
+
+<!-- 遮罩层 -->
+<!-- <div class="nav-overlay" id="navOverlay" onclick="hideNav()"></div> -->
+
+<!-- 触发按钮 -->
+<!-- <div class="nav-trigger" onclick="toggleNav(event)"></div> -->
+
+<!-- 侧边栏导航 -->
+<!-- <div class="sidebar-nav" id="sidebarNav">
+    <h3>Page navigation</h3>
+    <ul>
+    
+        <li><a href="workwang.html" onclick="hideNav()">work of the wang</a></li>
+        <li><a href="workwan.html" onclick="hideNav()">work of the wan</a></li>
+        <li><a href="workwu.html" onclick="hideNav()">work of the wu</a></li>
+     
+    </ul>
+</div> -->
+
+<div class="content5">
+    <h2>Welcome to 212 Portfolio!</h2>
+    <p>The purpose of this website is to display students' completed works.</p>
+    <p>The works are mainly presented through pictures, while the projects are explained through text</p>
+  
+</div>
+  </div>
+<!-- 底部卡片 -->
+<div class="container card-container" id="scroll-target"> <!-- 给底部卡片区域添加 id -->
+  <a href="intro-wan-det.html" class="card">
+      <div class="arrow">→</div>
+      <div class="title">十二道</div>
+      <div class="desc">The works of Wan</div>
+  </a>
+  <a href="intro-wang-det.html" class="card">
+      <div class="arrow">→</div>
+      <div class="title">网页前端制作</div>
+      <div class="desc">The works of Wang</div>
+  </a>
+  <a href="intro-wu-det.html" class="card">
+      <div class="arrow">→</div>
+      <div class="title">表面建模</div>
+      <div class="desc">The works of Wu</div>
+  </a>
+
+</div>
+
+<footer>
+    <div class="container2">
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <ul>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+19056040314">1043544606</a>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:hi@3point14.ca">W5-212.web.design</a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>School Address</h3>
+            <ul>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Beijing Institute of Graphic Communication, Daxing District, Beijing</span>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Socials</h3>
+            <ul class="social-links">
+                <li>
+                    <a href="https://space.bilibili.com/97030053?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">
+                      
+                    </a>
+                </li>
+                <li>
+                    <a href="https://mail.qq.com/" target="_blank" rel="noopener noreferrer">
+                      
+                    </a>
+                </li>
+                <li>
+                    <a href="https://weixin.qq.com/" target="_blank" rel="noopener noreferrer">
+                      
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Useful Links</h3>
+            <ul>
+                <li>
+                    <a href="about us.html">About us</a>
+                </li>
+                <li>
+                    <a href="workwang.html">Works</a>
+                </li>
+                <li>
+                    <a href="intro-wang.html">Introduce</a>
+                </li>
+                <li>
+                    <a href="intro-wan-det.html">ContactDetails</Details></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>
+            Website by
+            <a href="https://linezerostudio.com" target="_blank" rel="noopener noreferrer">Eve</a>
+            <br />
+            &copy; 212Studio. 
+        </p>
+    </div>
+</footer>
+
+
+  <script>
+// 切换导航栏显示/隐藏
+function toggleNav(event) {
+    event.stopPropagation(); // 阻止事件冒泡
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('navOverlay');
+    
+    if(sidebar.classList.contains('active')) {
+        hideNav();
+    } else {
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+    }
+}
+
+// 隐藏导航栏
+function hideNav() {
+    const sidebar = document.getElementById('sidebarNav');
+    const overlay = document.getElementById('navOverlay');
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+// 点击文档其他地方隐藏导航栏
+document.addEventListener('click', function(event) {
+    const sidebar = document.getElementById('sidebarNav');
+    const trigger = document.querySelector('.nav-trigger');
+    
+    // 如果点击的不是导航栏也不是触发按钮，且导航栏是显示的，则隐藏
+    if(!sidebar.contains(event.target) && 
+       !trigger.contains(event.target) && 
+       sidebar.classList.contains('active')) {
+        hideNav();
+    }
+});
+
+
+
+    // 获取 Explore 按钮和底部卡片的 DOM 元素
+    const exploreBtn = document.getElementById("explore-btn");
+    const scrollTarget = document.getElementById("scroll-target");
+
+    // 监听 Explore 按钮的点击事件
+    exploreBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // 阻止默认链接行为
+
+        // 使用 scrollIntoView() 方法滚动到底部卡片的位置
+        scrollTarget.scrollIntoView({
+            behavior: "smooth", // 平滑滚动效果
+            block: "start"      // 滚动到目标元素的顶部
+        });
+    });
+
+//content1组件的动画效果
+ // 获取 .content1 组件
+ const content1 = document.querySelector('.content1');
+// 选择body和html元素
+const body = document.querySelector('body');
+const html = document.querySelector('html');
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+
+    if (scrollTop >= 600 && scrollTop <= 1600) {
+        content1.style.borderRadius = '40px';
+        content1.style.boxShadow = ' 60px -16px #2E86AB';
+       // content1.style.backgroundColor = 'lightblue'; // 设置背景颜色为浅蓝色
+       content1.addEventListener('mouseover', () => {
+    html.style.backgroundColor = 'lightblue'; // 设置背景颜色为浅蓝色
+    body.style.backgroundColor = 'lightblue'; // 设置背景颜色为浅蓝色
+});
+
+     
+    } else {
+        content1.style.borderRadius = '0px';
+        content1.style.boxShadow = 'none';
+        //content1.style.backgroundColor = 'white'; // 恢复背景颜色为白色
+        // 鼠标离开content1时的事件监听器
+content1.addEventListener('mouseout', () => {
+    html.style.backgroundColor = 'black'; // 恢复背景颜色为黑色
+    body.style.backgroundColor = 'black'; // 恢复背景颜色为黑色
+});
+    }
+});
+//content2组件的动画效果
+// 获取 .content2 组件
+const content2 = document.querySelector('.content2');
+
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+
+    if (scrollTop >= 1600 && scrollTop <= 2200) {
+        content2.style.borderRadius = '40px';
+        content2.style.boxShadow = ' -60px -16px #FF6B6B';
+       // content2.style.backgroundColor = 'lightblue'; // 设置背景颜色为浅蓝色
+       // 鼠标悬停在content2上时的事件监听器
+    content2.addEventListener('mouseover', () => {
+    html.style.backgroundColor = '#FFF5F5'; // 设置背景颜色为浅蓝色
+    body.style.backgroundColor = '#FFF5F5'; // 设置背景颜色为浅蓝色
+});
+     
+    } else {
+        content2.style.borderRadius = '0px';
+        content2.style.boxShadow = 'none';
+        //content2.style.backgroundColor = 'white'; // 恢复背景颜色为白色
+  // 鼠标离开content2时的事件监听器
+    content2.addEventListener('mouseout', () => {
+    html.style.backgroundColor = '#1A1A1A'; // 恢复背景颜色为白色
+    body.style.backgroundColor = '#1A1A1A6'; // 恢复背景颜色为白色
+});
+    }
+});
+//content3组件的动画效果
+// 获取 .content3 组件
+const content3 = document.querySelector('.content3');
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+
+    if (scrollTop >= 2200 && scrollTop <= 3200) {
+        content3.style.borderRadius = '40px';
+        content3.style.boxShadow = ' 60px -16px #292F36';
+       // content3.style.backgroundColor = 'lightblue'; // 设置背景颜色为浅蓝色
+      // 鼠标悬停在content3上时的事件监听器
+    content3.addEventListener('mouseover', () => {
+    html.style.backgroundColor = '#52616b'; // 设置背景颜色为浅蓝色
+    body.style.backgroundColor = '#52616b'; // 设置背景颜色为浅蓝色
+});
+     
+    } else {
+        content3.style.borderRadius = '0px';
+        content3.style.boxShadow = 'none';
+        //content3.style.backgroundColor = 'white'; // 恢复背景颜色为白色
+    // 鼠标离开content3时的事件监听器
+    content3.addEventListener('mouseout', () => {
+    html.style.backgroundColor = 'white'; // 恢复背景颜色为白色
+    body.style.backgroundColor = 'white'; // 恢复背景颜色为白色
+});
+    }
+});
+
+//浮动卡牌
+
+  // 鼠标移动时的3D倾斜效果
+  card.addEventListener('mousemove', (e) => {
+    if (!card.classList.contains('active')) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const angleX = (y - centerY) / 20;
+      const angleY = (centerX - x) / 20;
+      
+      card.style.transform = `translateY(-40px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    }
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    if (!card.classList.contains('active')) {
+      // 根据卡牌位置恢复初始状态
+      if (index === 0) {
+        card.style.transform = 'translateX(-80px) rotate(-15deg)';
+      } else if (index === 1) {
+        card.style.transform = 'translateX(0) rotate(0deg)';
+      } else {
+        card.style.transform = 'translateX(80px) rotate(15deg)';
+      }
+    }
+  });
+;
+
+
+
+</script>
+
+</body>
+</html>

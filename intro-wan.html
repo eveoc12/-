@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wan-intro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url('world-map.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .tabs a.active {
+            border-bottom: 2px solid white;
+        }
+        .team-members {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .team-member {
+            flex: 1;
+            text-align: center;
+            margin: 0 20px;
+        }
+        .team-member img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+        .team-member p {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .team-member h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .team-member span {
+            font-size: 16px;
+            color: #ddd;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+    transition: transform 2.2s ease; /* 平滑过渡效果 */
+
+        }
+        .logo:hover {
+    transform: rotate(360deg); /* 鼠标悬浮时旋转 360 度 */
+}
+
+.index-logo {
+    width: 40px;
+    height: 40px;
+    margin-left: -560px;
+    transition: transform 2.2s ease; /* 平滑过渡效果 */
+    display: inline-block; /* 确保可见 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针 */
+}
+.index-logo:hover {
+    transform: rotate(360deg); /* 鼠标悬浮时旋转 360 度 */
+}
+    
+    </style>
+</head>
+<body>
+   <a href="index.html"><img class="logo" src="../image/logo.png" alt="logo"></a>
+
+    <div class="container">
+        <h1>Welcome to the world of game</h1>
+        <h2>2D pixel project</h2>
+
+    <!-- 区域选项卡 -->
+        <div class="tabs">
+            <a href="intro-wang.html" >Wang </a>
+            <a href="intro-wan.html"class="active">Wan</a>
+            <a href="intro-wu.html">Wu</a>
+           
+        </div>
+        <!-- 团队成员 -->
+        <div class="team-members">
+            <div class="team-member">
+          <a href="intro-wan-det.html" >  <img src="../image/headWan.png" alt="wan work"> </a>
+           <p>This research is based on Unity 2D, integrating the culture of the twelve Chinese zodiac signs with the gameplay of Roguelike games to create a 2D game, constructing levels rich in traditional Chinese cultural elements</p>
+
+           <h3>Wan</h3>
+                <span>Game Designer</span>
+            </div>
+          
+        </div>
+    </div>
+</body>
+</html>

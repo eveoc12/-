@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> wu-intro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: url('world-map.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .tabs a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .tabs a.active {
+            border-bottom: 2px solid white;
+        }
+        .team-members {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .team-member {
+            flex: 1;
+            text-align: center;
+            margin: 0 20px;
+        }
+        .team-member img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+        }
+        .team-member p {
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .team-member h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .team-member span {
+            font-size: 16px;
+            color: #ddd;
+        }
+        .logo {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+    transition: transform 2.2s ease; /* 平滑过渡效果 */
+
+        }
+        .logo:hover {
+    transform: rotate(360deg); /* 鼠标悬浮时旋转 360 度 */
+}
+    </style>
+</head>
+<body>
+   <a href="index.html"><img class="logo" src="../image/logo.png" alt="logo"></a>
+
+    <div class="container">
+        <h1>Welcome to the word of Blender</h1>
+        <h2>Blender Modeling</h2>
+
+        <div class="tabs">
+            <a href="intro-wang.html" >Wang </a>
+            <a href="intro-wan.html">Wan</a>
+            <a href="intro-wu.html"class="active">Wu</a>
+           
+        </div>
+
+        <!-- 团队成员 -->
+        <div class="team-members">
+            <div class="team-member">
+                <a href="intro-wu-det.html" >  <img src="../image/headWu.png" alt="wu work"> </a>
+
+                <p>Together let’s design the future we want to live in. We leverage storytelling to create meaningful experiences and make significant impact in people’s lives.</p>
+                <h3>Wu</h3>
+                <span>Blender Designer</span>
+            </div>
+          
+        </div>
+    </div>
+</body>
+</html>
